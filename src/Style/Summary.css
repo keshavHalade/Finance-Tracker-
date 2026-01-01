@@ -1,0 +1,82 @@
+/* ==== Summary Styles ==== */
+.summary-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin: 16px 0;
+}
+
+.summary-pill {
+  padding: 14px 16px;
+  border-radius: 10px;
+  background: #ffffff;
+  border: 2px solid #e2e8f0;
+  text-align: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.summary-pill::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+  transition: height 0.3s ease;
+}
+
+.summary-pill:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  border-color: #cbd5e1;
+}
+
+.summary-pill--income::before {
+  background: linear-gradient(90deg, #06b6d4 0%, #0891b2 100%);
+}
+
+.summary-pill--savings::before {
+  background: linear-gradient(90deg, #10b981 0%, #059669 100%);
+}
+
+.summary-pill--actual::before {
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+}
+
+.summary-pill--net::before {
+  background: linear-gradient(90deg, #f97316 0%, #fb923c 100%);
+}
+
+.summary-label {
+  font-size: 11px;
+  color: #64748b;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.summary-value {
+  font-size: 18px;
+  font-weight: 800;
+  color: #1a202c;
+  margin-top: 6px;
+  letter-spacing: -0.5px;
+}
+
+@media (max-width: 768px) {
+  .summary-row {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .summary-pill {
+    padding: 12px 14px;
+  }
+
+  .summary-value {
+    font-size: 16px;
+  }
+}

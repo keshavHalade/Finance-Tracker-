@@ -1,0 +1,149 @@
+/* ==== Bottom Navigation (mobile app style) ==== */
+
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  background: #ffffff;
+  border-top: 1px solid #e8eef7;
+  box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.08);
+  padding: 8px 0 env(safe-area-inset-bottom);
+  z-index: 100;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.bottom-nav::-webkit-scrollbar {
+  height: 3px;
+}
+
+.bottom-nav::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.bottom-nav::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 2px;
+}
+
+.bottom-nav-item {
+  flex: 0 0 auto;
+  min-width: 80px;
+  padding: 12px 16px;
+  font-size: 12px;
+  font-weight: 500;
+  border: none;
+  background: transparent;
+  color: #94a3b8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  white-space: nowrap;
+}
+
+.nav-icon {
+  font-size: 24px;
+  line-height: 1;
+  transition: transform 0.25s ease;
+}
+
+.nav-label {
+  font-size: 12px;
+  font-weight: 500;
+  transition: color 0.25s ease;
+}
+
+.bottom-nav-item:hover {
+  color: #64748b;
+  background: rgba(100, 116, 139, 0.04);
+}
+
+.bottom-nav-item:hover .nav-icon {
+  transform: scale(1.12);
+}
+
+.bottom-nav-item.active {
+  color: #059669;
+  font-weight: 600;
+}
+
+.bottom-nav-item.active .nav-icon {
+  transform: scale(1.2);
+}
+
+.bottom-nav-item.active::before {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #059669, #10b981);
+  border-radius: 3px 3px 0 0;
+}
+
+.bottom-nav-item:active {
+  background: rgba(5, 150, 105, 0.08);
+}
+
+/* Responsive: Adapt layout for tablet screens */
+@media (max-width: 1024px) {
+  .bottom-nav-item {
+    min-width: 75px;
+    padding: 10px 12px;
+  }
+
+  .nav-icon {
+    font-size: 22px;
+  }
+
+  .nav-label {
+    font-size: 11px;
+  }
+}
+
+/* Responsive: Compact layout for small screens */
+@media (max-width: 640px) {
+  .bottom-nav-item {
+    min-width: 65px;
+    padding: 8px 10px;
+    gap: 4px;
+  }
+
+  .nav-icon {
+    font-size: 20px;
+  }
+
+  .nav-label {
+    font-size: 10px;
+  }
+}
+
+/* Responsive: Icon-only layout for very small screens */
+@media (max-width: 480px) {
+  .bottom-nav-item {
+    min-width: 50px;
+    padding: 8px 6px;
+    gap: 2px;
+  }
+
+  .nav-icon {
+    font-size: 18px;
+  }
+
+  .nav-label {
+    font-size: 8px;
+    line-height: 1;
+  }
+
+  .bottom-nav-item.active::before {
+    height: 2px;
+  }
+}

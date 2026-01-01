@@ -1,0 +1,109 @@
+/* ==== SetupTab Styling ==== */
+
+.setup-income-card {
+  background: linear-gradient(135deg, #ffffff 0%, #c7dbf0 100%);
+  border: 2px solid #e2e8f0;
+}
+
+.income-icon {
+  font-size: 36px;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.setup-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.setup-section {
+  border-radius: 12px;
+  padding: 14px;
+  background: #f8fafc;
+  border: 1.5px solid #e2e8f0;
+}
+
+.setup-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  gap: 60%;
+}
+
+.setup-section-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: #1a202c;
+  letter-spacing: 0.3px;
+}
+
+.setup-table {
+  font-size: 14px;
+}
+
+.setup-table-row {
+  transition: background 0.2s ease;
+}
+
+.setup-table-row:hover {
+  background: #f1f5f9;
+}
+
+.setup-table-name {
+  padding: 10px 8px;
+  font-weight: 600;
+  color: #334155;
+}
+
+.setup-table-amount {
+  padding: 10px 8px;
+  text-align: right;
+  font-weight: 700;
+  color: #667eea;
+}
+
+.setup-table-total {
+  background: #e8eef7;
+  font-weight: 700;
+  border-top: 2px solid #cbd5e1;
+}
+
+.setup-table-total td {
+  padding: 12px 8px;
+  color: #334155;
+}
+
+.setup-table-total td:last-child {
+  color: #667eea;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .setup-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .setup-section {
+    padding: 12px;
+  }
+
+  .setup-section-title {
+    font-size: 15px;
+  }
+
+  .income-icon {
+    font-size: 28px;
+  }
+}

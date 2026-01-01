@@ -1,0 +1,59 @@
+/* ==== Base & Layout ==== */
+
+* {
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Nunito",
+    "Segoe UI", sans-serif;
+  background: #f0f4f8;
+  color: #1a202c;
+}
+
+/* Outer background + centered app like your original UI */
+.app-root {
+  min-height: 100vh;
+  /* display: flex; */
+  justify-content: center;
+  background: #f0f4f8;
+}
+
+/* Inner shell, max width like a card on desktop, full width on mobile */
+.app-shell {
+  width: 100%;
+  max-width: 960px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+}
+
+/* ==== Main area ==== */
+
+.app-main {
+  flex: 1;
+  padding: 16px 12px 76px;
+  overflow-y: auto;
+  background: #f8fafc;
+}
+
+/* Responsive: mobile first */
+@media (max-width: 768px) {
+  .app-shell {
+    box-shadow: none;
+  }
+
+  .app-main {
+    padding: 10px 8px 76px;
+    background: #f8fafc;
+  }
+}

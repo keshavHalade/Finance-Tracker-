@@ -1,0 +1,230 @@
+/* ==== Analytics & Insights Styles ==== */
+
+.analytics-card {
+  background: linear-gradient(135deg, #f0f4ff 0%, #f8faff 100%);
+  border: 2px solid #dbeafe;
+}
+
+.insights-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 28px;
+  margin-top: 16px;
+}
+
+.insight-box {
+  padding: 18px 16px;
+  border-radius: 10px;
+  background: #ffffff;
+  border: 2px solid #e2e8f0;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.insight-box::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+}
+
+.insight-box:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.insight-box--primary::before {
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+}
+
+.insight-box--success::before {
+  background: linear-gradient(90deg, #10b981 0%, #059669 100%);
+}
+
+.insight-box--warning::before {
+  background: linear-gradient(90deg, #f97316 0%, #fb923c 100%);
+}
+
+.insight-box--info::before {
+  background: linear-gradient(90deg, #06b6d4 0%, #0891b2 100%);
+}
+
+.insight-label {
+  font-size: 11px;
+  color: #64748b;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+
+.insight-value {
+  font-size: 24px;
+  font-weight: 800;
+  color: #1a202c;
+  margin-bottom: 8px;
+  letter-spacing: -0.5px;
+}
+
+.insight-meta {
+  font-size: 12px;
+  color: #94a3b8;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+/* Ranking Section */
+.ranking-section {
+  border-top: 2px solid #e2e8f0;
+  padding-top: 20px;
+}
+
+.ranking-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.ranking-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ranking-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 14px;
+  background: #ffffff;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  transition: all 0.2s ease;
+}
+
+.ranking-item:hover {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+}
+
+.ranking-item.ranking-first {
+  background: linear-gradient(135deg, #fef08a 0%, #fef3c7 100%);
+  border: 2px solid #fcd34d;
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.2);
+}
+
+.ranking-item.ranking-second {
+  background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+  border: 2px solid #93c5fd;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+}
+
+.ranking-position {
+  min-width: 40px;
+}
+
+.position-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  font-weight: 800;
+  font-size: 14px;
+}
+
+.ranking-item.ranking-first .position-number {
+  background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%);
+}
+
+.ranking-item.ranking-second .position-number {
+  background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
+}
+
+.ranking-info {
+  flex: 0 0 140px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ranking-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1e293b;
+  display: block;
+}
+
+.ranking-completion {
+  font-size: 12px;
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+.ranking-bar {
+  flex: 1;
+  height: 12px;
+  background: linear-gradient(90deg, #f1f5f9 0%, #e2e8f0 100%);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.ranking-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+  border-radius: 999px;
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ranking-item.ranking-first .ranking-fill {
+  background: linear-gradient(90deg, #f59e0b 0%, #f97316 100%);
+}
+
+.ranking-item.ranking-second .ranking-fill {
+  background: linear-gradient(90deg, #3b82f6 0%, #06b6d4 100%);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 1024px) {
+  .insights-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  .insights-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .ranking-item {
+    flex-wrap: wrap;
+  }
+
+  .ranking-info {
+    flex: 0 0 100%;
+    order: 1;
+  }
+
+  .ranking-position {
+    order: 0;
+  }
+
+  .ranking-bar {
+    flex: 1;
+    order: 2;
+    margin-top: 8px;
+  }
+}

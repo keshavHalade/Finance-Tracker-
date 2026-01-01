@@ -1,0 +1,37 @@
+/* ==== Tips Styles ==== */
+.tips-container {
+  background: linear-gradient(135deg, #fef08a 0%, #fef3c7 100%);
+  border: 2px solid #fcd34d;
+  border-left: 6px solid #f59e0b;
+}
+
+.tips-container:hover {
+  box-shadow: 0 8px 24px rgba(245, 158, 11, 0.15);
+}
+
+.tips-title {
+  color: #92400e;
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+
+.tips-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.tips-item {
+  font-size: 13px;
+  color: #78350f;
+  padding: 8px 0;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.tips-item strong {
+  color: #92400e;
+  font-weight: 700;
+}
