@@ -14,6 +14,7 @@ const TABS = [
   { id: "advisor", label: "Advisor", icon: "🤖" },
   { id: "analytics", label: "Analytics", icon: "📈" },
   { id: "backup", label: "Backup", icon: "💾" },
+  { id: "about", label: "About", icon: "ℹ️" },
 ];
 
 export default function BottomNav({ activeTab, onChange }) {

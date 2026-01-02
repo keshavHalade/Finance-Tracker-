@@ -1,10 +1,11 @@
 import React from "react";
 import MonthSelector from "./MonthSelector";
+import { generateFinancialReport } from "../utils/excelExport";
 import "../Style/dashboardStyle.css";
 
 // Donut Chart component - renders segments as circles with stroke-dasharray
 function DonutChart({ segments, size = 160 }) {
-  const radius = 100;
+  const radius = 55;
   const circumference = 2 * Math.PI * radius;
 
   let offset = 0;
@@ -18,9 +19,9 @@ function DonutChart({ segments, size = 160 }) {
         r={radius}
         cx={size / 2}
         cy={size / 2}
-        fill="transparent"
+        fill="none"
         stroke={color}
-        strokeWidth="20"
+        strokeWidth="16"
         strokeDasharray={`${segmentLength} ${circumference}`}
         strokeDashoffset={-offset}
         strokeLinecap="round"
@@ -37,22 +38,30 @@ function DonutChart({ segments, size = 160 }) {
   });
 
   return (
-    <svg
-      width={size}
-      height={size}
-      viewBox={`0 0 ${size} ${size}`}
-      style={{ maxWidth: "100%" }}
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
     >
-      <circle
-        r={radius}
-        cx={size / 2}
-        cy={size / 2}
-        fill="transparent"
-        stroke="#f3f4f6"
-        strokeWidth="16"
-      />
-      {circles}
-    </svg>
+      <svg
+        width={size}
+        height={size}
+        viewBox={`0 0 ${size} ${size}`}
+        style={{ maxWidth: "100%", margin: "0 auto" }}
+      >
+        <circle
+          r={radius}
+          cx={size / 2}
+          cy={size / 2}
+          fill="none"
+          stroke="#f3f4f6"
+          strokeWidth="14"
+        />
+        {circles}
+      </svg>
+    </div>
   );
 }
 
@@ -226,6 +235,7 @@ export default function Dashboard({ app }) {
           justifyContent: "space-between",
           marginBottom: "20px",
           padding: "0 16px",
+          gap: "12px",
         }}
       >
         <div>
@@ -244,11 +254,43 @@ export default function Dashboard({ app }) {
             Your 55-40-5 budget allocation overview
           </p>
         </div>
-        <div style={{ minWidth: "140px" }}>
-          <MonthSelector
-            state={state}
-            setCurrentMonthKey={app.setCurrentMonthKey}
-          />
+        <div
+          style={{
+            display: "flex",
+            gap: "12px",
+            alignItems: "center",
+            minWidth: "300px",
+            justifyContent: "flex-end",
+          }}
+        >
+          <button
+            onClick={() => generateFinancialReport(state, app)}
+            style={{
+              padding: "8px 16px",
+              background: "#10b981",
+              color: "#fff",
+              border: "none",
+              borderRadius: "6px",
+              cursor: "pointer",
+              fontSize: "14px",
+              fontWeight: "600",
+              display: "flex",
+              alignItems: "center",
+              gap: "6px",
+              transition: "background 0.2s",
+            }}
+            onMouseOver={(e) => (e.target.style.background = "#059669")}
+            onMouseOut={(e) => (e.target.style.background = "#10b981")}
+            title="Export comprehensive financial report to Excel"
+          >
+            📥 Export Report
+          </button>
+          <div style={{ minWidth: "140px" }}>
+            <MonthSelector
+              state={state}
+              setCurrentMonthKey={app.setCurrentMonthKey}
+            />
+          </div>
         </div>
       </div>
 

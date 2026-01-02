@@ -2,7 +2,13 @@ import React, { useState, useMemo } from "react";
 import MonthSelector from "./MonthSelector";
 
 export default function Transactions({ app }) {
-  const { state, addTransaction, deleteTransaction, setCurrentMonthKey } = app;
+  const {
+    state,
+    addTransaction,
+    deleteTransaction,
+    updateTransaction,
+    setCurrentMonthKey,
+  } = app;
   const [showModal, setShowModal] = useState(false);
   const [editingId, setEditingId] = useState(null);
   const [editForm, setEditForm] = useState({});
@@ -121,43 +127,81 @@ export default function Transactions({ app }) {
   const startEdit = (transaction) => {
     setEditingId(transaction.id);
     setEditForm({
-      date: transaction.date,
-      description: transaction.description,
-      amount: transaction.amount.toString(),
+      date: transaction.date || "",
+      description: transaction.description || "",
+      amount: String(transaction.amount || ""),
       categoryId: transaction.categoryId || "",
     });
   };
 
   const cancelEdit = () => {
     setEditingId(null);
+    setEditForm({});
   };
 
-  const handleEditSubmit = () => {
+  const handleEditSubmit = (transactionId) => {
+    if (!editForm.amount || !editForm.categoryId) {
+      alert("Please fill in amount and category");
+      return;
+    }
+
+    // Find the original transaction to preserve type and monthKey
+    const originalTransaction = (state.transactions || []).find(
+      (t) => t.id === transactionId
+    );
+
+    if (!originalTransaction) {
+      alert("Transaction not found");
+      return;
+    }
+
+    const updates = {
+      date: editForm.date || "",
+      description: (editForm.description || "").trim(),
+      amount: parseFloat(editForm.amount) || 0,
+      categoryId: editForm.categoryId || "",
+      type: originalTransaction.type, // Preserve original type
+      monthKey: originalTransaction.monthKey, // Preserve original monthKey
+      id: originalTransaction.id, // Preserve ID
+    };
+
+    updateTransaction(transactionId, updates);
     setEditingId(null);
+    setEditForm({});
   };
 
   return (
     <div style={{ padding: "16px", background: "#f9fafb", minHeight: "100vh" }}>
-      {/* Header with Month Selector on Left */}
+      {/* Header with Month Selector on Right */}
       <div
         style={{
           display: "flex",
           alignItems: "center",
-          gap: "16px",
+          justifyContent: "space-between",
           marginBottom: "20px",
         }}
       >
-        <div style={{ minWidth: "120px" }}>
+        <div>
+          <h2
+            style={{
+              margin: 0,
+              marginBottom: "4px",
+              color: "#1f2937",
+              fontSize: "24px",
+              fontWeight: "700",
+            }}
+          >
+            📝 Transactions
+          </h2>
+          <p style={{ margin: 0, fontSize: "12px", color: "#6b7280" }}>
+            Track all your financial movements
+          </p>
+        </div>
+        <div style={{ minWidth: "140px" }}>
           <MonthSelector
             state={state}
             setCurrentMonthKey={setCurrentMonthKey}
           />
-        </div>
-        <div>
-          <h2 style={{ margin: 0, marginBottom: "4px" }}>📝 Transactions</h2>
-          <p style={{ margin: 0, fontSize: "12px", color: "#6b7280" }}>
-            Track all your financial movements
-          </p>
         </div>
       </div>
 
@@ -570,7 +614,7 @@ export default function Transactions({ app }) {
                           }}
                         >
                           <button
-                            onClick={handleEditSubmit}
+                            onClick={() => handleEditSubmit(t.id)}
                             style={{
                               padding: "6px 12px",
                               background: "#10b981",

@@ -192,26 +192,36 @@ export default function Analytics({ app }) {
 
   return (
     <div style={{ padding: "16px", background: "#f9fafb", minHeight: "100vh" }}>
-      {/* Header with Month Selector on Left */}
+      {/* Header with Month Selector on Right */}
       <div
         style={{
           display: "flex",
           alignItems: "center",
-          gap: "16px",
+          justifyContent: "space-between",
           marginBottom: "20px",
         }}
       >
-        <div style={{ minWidth: "120px" }}>
+        <div>
+          <h2
+            style={{
+              margin: 0,
+              marginBottom: "4px",
+              color: "#1f2937",
+              fontSize: "24px",
+              fontWeight: "700",
+            }}
+          >
+            📊 Analytics
+          </h2>
+          <p style={{ margin: 0, fontSize: "12px", color: "#6b7280" }}>
+            Financial insights for {getMonthName(currentMonthKey)}
+          </p>
+        </div>
+        <div style={{ minWidth: "140px" }}>
           <MonthSelector
             state={state}
             setCurrentMonthKey={setCurrentMonthKey}
           />
-        </div>
-        <div>
-          <h2 style={{ margin: 0, marginBottom: "4px" }}>📊 Analytics</h2>
-          <p style={{ margin: 0, fontSize: "12px", color: "#6b7280" }}>
-            Financial insights for {getMonthName(currentMonthKey)}
-          </p>
         </div>
       </div>
 
@@ -455,7 +465,7 @@ export default function Analytics({ app }) {
                         color: "#1f2937",
                       }}
                     >
-                      ${cat.amount.toFixed(2)}
+                      ₹{cat.amount.toFixed(2)}
                     </div>
                   </div>
                 </div>
@@ -533,7 +543,7 @@ export default function Analytics({ app }) {
                         color: "#1f2937",
                       }}
                     >
-                      ${cat.amount.toFixed(2)}
+                      ₹{cat.amount.toFixed(2)}
                     </div>
                   </div>
                 </div>
@@ -590,7 +600,7 @@ export default function Analytics({ app }) {
                     marginBottom: "4px",
                   }}
                 >
-                  💚 Saved: ${month.savings.toFixed(0)}
+                  💚 Saved: ₹{month.savings.toFixed(0)}
                 </div>
                 <div
                   style={{
@@ -599,10 +609,10 @@ export default function Analytics({ app }) {
                     marginBottom: "4px",
                   }}
                 >
-                  💸 Spent: ${month.expenses.toFixed(0)}
+                  💸 Spent: ₹{month.expenses.toFixed(0)}
                 </div>
                 <div style={{ fontSize: "11px", color: "#b45309" }}>
-                  📦 Buffer: ${month.buffer.toFixed(0)}
+                  📦 Buffer: ₹{month.buffer.toFixed(0)}
                 </div>
               </div>
             ))}
@@ -659,7 +669,7 @@ export default function Analytics({ app }) {
             }}
           >
             {currentMonthTotals.expenses <= expensesTarget ? "✓" : "⚠"} Expenses
-            within limit (${currentMonthTotals.expenses.toFixed(0)} / $
+            within limit (₹{currentMonthTotals.expenses.toFixed(0)} / ₹
             {expensesTarget.toFixed(0)})
           </li>
           <li

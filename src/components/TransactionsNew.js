@@ -1,7 +1,14 @@
 import React, { useState } from "react";
+import MonthSelector from "./MonthSelector";
 
 export default function Transactions({ app }) {
-  const { state, addTransaction, deleteTransaction } = app;
+  const {
+    state,
+    addTransaction,
+    deleteTransaction,
+    updateTransaction,
+    setCurrentMonthKey,
+  } = app;
   const [showModal, setShowModal] = useState(false);
   const [editingId, setEditingId] = useState(null);
   const [editForm, setEditForm] = useState({});
@@ -88,11 +95,41 @@ export default function Transactions({ app }) {
   };
 
   const handleEditSubmit = () => {
+    if (!editForm.amount || !editForm.categoryId) {
+      alert("Please fill in amount and category");
+      return;
+    }
+
+    // Find the original transaction to preserve type and monthKey
+    const originalTransaction = (state.transactions || []).find(
+      (t) => t.id === editingId
+    );
+
+    if (!originalTransaction) {
+      alert("Transaction not found");
+      return;
+    }
+
+    const updates = {
+      date: editForm.date || "",
+      description: (editForm.description || "").trim(),
+      amount: parseFloat(editForm.amount) || 0,
+      categoryId: editForm.categoryId || "",
+      type: originalTransaction.type, // Preserve original type
+      monthKey: originalTransaction.monthKey, // Preserve original monthKey
+      id: originalTransaction.id, // Preserve ID
+    };
+
+    updateTransaction(editingId, updates);
     setEditingId(null);
+    setEditForm({});
   };
 
   return (
-    <div>
+    <div style={{ padding: "16px", background: "#f9fafb", minHeight: "100vh" }}>
+      {/* Month Selector */}
+      <MonthSelector state={state} setCurrentMonthKey={setCurrentMonthKey} />
+
       {transactionsForMonth.length === 0 ? (
         <div style={{ textAlign: "center", padding: "60px 20px" }}>
           <div style={{ fontSize: "48px", marginBottom: "12px" }}>📝</div>

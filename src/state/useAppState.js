@@ -263,7 +263,7 @@ function getCurrentMonthKey() {
   return `${d.getFullYear()}-${m}`;
 }
 
-export  function useAppState() {
+export function useAppState() {
   const [state, setState] = useState(() => {
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
@@ -456,6 +456,15 @@ export  function useAppState() {
     }));
   };
 
+  const updateTransaction = (id, updates) => {
+    setState((prev) => ({
+      ...prev,
+      transactions: prev.transactions.map((t) =>
+        t.id === id ? { ...t, ...updates } : t
+      ),
+    }));
+  };
+
   const setSubscriptions = (subs) => {
     setState((prev) => ({
       ...prev,
@@ -498,6 +507,7 @@ export  function useAppState() {
     setCurrentMonthKey,
     addTransaction,
     deleteTransaction,
+    updateTransaction,
     setSubscriptions,
     setSavingsGoals,
     updateMonthlySnapshot,
@@ -505,4 +515,3 @@ export  function useAppState() {
 
   return value;
 }
-

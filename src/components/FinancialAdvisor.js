@@ -228,28 +228,36 @@ export default function FinancialAdvisor({ app }) {
 
   return (
     <div style={{ padding: "16px", background: "#f9fafb", minHeight: "100vh" }}>
-      {/* Header with Month Selector on Left */}
+      {/* Header with Month Selector on Right */}
       <div
         style={{
           display: "flex",
           alignItems: "center",
-          gap: "16px",
+          justifyContent: "space-between",
           marginBottom: "20px",
         }}
       >
-        <div style={{ minWidth: "120px" }}>
-          <MonthSelector
-            state={state}
-            setCurrentMonthKey={setCurrentMonthKey}
-          />
-        </div>
         <div>
-          <h2 style={{ margin: 0, marginBottom: "4px" }}>
+          <h2
+            style={{
+              margin: 0,
+              marginBottom: "4px",
+              color: "#1f2937",
+              fontSize: "24px",
+              fontWeight: "700",
+            }}
+          >
             🤖 Financial Advisor
           </h2>
           <p style={{ margin: 0, fontSize: "12px", color: "#6b7280" }}>
             AI-powered financial insights and recommendations
           </p>
+        </div>
+        <div style={{ minWidth: "140px" }}>
+          <MonthSelector
+            state={state}
+            setCurrentMonthKey={setCurrentMonthKey}
+          />
         </div>
       </div>
 

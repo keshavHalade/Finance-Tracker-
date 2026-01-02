@@ -108,6 +108,7 @@ import Analytics from "./components/Analytics";
 import Backup from "./components/Backup";
 import MonthlySummary from "./components/MonthlySummary";
 import FinancialAdvisor from "./components/FinancialAdvisor";
+import About from "./components/About";
 
 // styles (unchanged)
 import "./Style/base.css";
@@ -176,6 +177,8 @@ function App() {
         return <MonthlySummary app={app} />;
       case "dashboard":
         return <Dashboard app={app} />;
+      case "about":
+        return <About />;
       default:
         return <SetupTab app={app} />;
     }
@@ -183,7 +186,7 @@ function App() {
 
   return (
     <div className="app-root">
-      <Header />
+      <Header app={app} />
       <main className="app-main">{renderTab()}</main>
       <BottomNav activeTab={tab} onChange={setTab} />
     </div>
